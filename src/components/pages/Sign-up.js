@@ -4,6 +4,7 @@ import { makeStyles } from '@mui/styles'
 import { useState } from 'react'
 import { USERS } from '../../constants/storage'
 import { useHistory } from 'react-router'
+import { getUser } from '../../utils/getUser'
 
 function SignUp() {
   const [form, setFrom] = useState({ name: '', phone: '' })
@@ -25,22 +26,13 @@ function SignUp() {
       name: prev.name.trim()
     }))
 
-    if (!window?.localStorage) {
-      console.log('Localstorage not found!')
-      return;
-    }
-    if (!window?.localStorage.getItem(USERS)) {
-      window?.localStorage.setItem(USERS, JSON.stringify([]))
-    }
-    const users = JSON.parse(window.localStorage.getItem(USERS))
-
-    let user = users.find(user => user.name === form.name)
+    const { user, users } = getUser(window?.localStorage, form)
 
     if (user) {
       console.log('This user exists! Please Login');
       history.push('login')
     } else {
-      window.localStorage.setItem(USERS, JSON.stringify([...users, { id: users.length + 1, ...form }]))
+      window.localStorage.setItem(USERS, JSON.stringify([...users, { id: users.length + 1, enterExits: [], ...form }]))
       console.log('This user has been succefully registered! Please Login!');
       history.push('login')
     }

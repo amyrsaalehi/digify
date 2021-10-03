@@ -13,5 +13,4 @@ function MainRoutes() {
     </Switch>
   )
 }
-
 export default MainRoutes
