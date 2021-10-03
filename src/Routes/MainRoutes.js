@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
-import Login from '../components/pages/Login'
-import SignUp from '../components/pages/Sign-up'
-import Home from '../components/pages/Home.js'
+import Login from '../components/pages/login'
+import SignUp from '../components/pages/sign-up'
+import Home from '../components/pages/home'
 
 function MainRoutes() {
 

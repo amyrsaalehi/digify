@@ -59,13 +59,13 @@ function NavBar({ type }) {
           }
 
           {
-            (type === "dashboard" && user?.id) && (
+            user?.id ? (
               <li>
                 <Button variant="outlined" color="error" onClick={handleLogout} >
                   Logout
                 </Button>
               </li>
-            )
+            ) : null
           }
         </ul>
       </Container>

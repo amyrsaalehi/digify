@@ -1,5 +1,5 @@
-import { useGlobal } from '../../contexts/Global'
-import DashboardLayout from '../template/DashboardLayout'
+import { useGlobal } from '../../../contexts/Global'
+import DashboardLayout from '../../template/DashboardLayout'
 
 
 function EnterExit() {

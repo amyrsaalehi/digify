@@ -1,4 +1,4 @@
-import DashboardLayout from '../template/DashboardLayout'
+import DashboardLayout from '../../template/DashboardLayout'
 
 function Report() {
   return (

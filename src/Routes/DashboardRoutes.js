@@ -1,6 +1,6 @@
 import { Route, Switch, useHistory } from "react-router-dom";
-import EnterExit from '../components/pages/Enter-Exit'
-import Report from '../components/pages/Report'
+import EnterExit from '../components/pages/dashboard'
+import Report from '../components/pages/dashboard/report'
 import { getUser } from "../utils/storage";
 
 function DashboardRoutes() {

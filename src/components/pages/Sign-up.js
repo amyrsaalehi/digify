@@ -63,12 +63,12 @@ const useStyles = makeStyles(theme => ({
       marginBottom: 60
     },
     '& button': {
-      width: 320,
+      width: 250,
       padding: 10
     }
   },
   input: {
-    width: 320
+    width: 250
   }
 }))
 
