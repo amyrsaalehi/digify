@@ -45,7 +45,7 @@ function Login() {
         <h1>Login</h1>
         <TextField type="text" className={classes.input} label="Name" variant="outlined" name="name" value={form.name} onChange={handleFormChanged} />
         <TextField type="number" className={classes.input} label="Phone" variant="outlined" name="phone" value={form.phone} onChange={handleFormChanged} />
-        <Button onClick={handleFormSubmited} variant="contained">Register</Button>
+        <Button onClick={handleFormSubmited} variant="contained">Login</Button>
       </Paper>
 
     </MainLayout>

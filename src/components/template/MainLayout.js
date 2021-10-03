@@ -15,7 +15,7 @@ function MainLayout({ children }) {
           <NavBar type="main" />
         )
       }
-      <Container>
+      <Container style={{ paddingTop: 30 }}>
         {children}
       </Container>
 

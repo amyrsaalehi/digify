@@ -16,8 +16,8 @@ export const GlobalProvider = ({ children }) => {
     enterExits: [
       {
         id;
-        enter;
-        exit;
+        start;
+        end;
         tasks;
       }
     ]
@@ -29,6 +29,10 @@ export const GlobalProvider = ({ children }) => {
       }
     ]
   */
+
+  React.useEffect(() => {
+    console.log(user)
+  }, [user])
 
 
   return (
