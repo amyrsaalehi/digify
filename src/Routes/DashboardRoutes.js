@@ -13,7 +13,7 @@ function DashboardRoutes() {
 
   return (
     <Switch>
-      <Route exact path="/dashboard/enter-exit" component={EnterExit} />
+      <Route exact path="/dashboard" component={EnterExit} />
       <Route exact path="/dashboard/report" component={Report} />
     </Switch>
   )

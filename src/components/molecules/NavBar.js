@@ -1,18 +1,45 @@
 import { Button, Container } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react'
-import { NavLink, useHistory } from 'react-router-dom';
-import { mainLinks, dashboardLinks } from '../../Routes'
+import { useHistory } from 'react-router-dom';
 import { useGlobal } from '../../contexts/Global'
 import { logout } from '../../utils/storage'
+import BtnLink from '../atoms/BtnLink';
 
 
 function NavBar({ type }) {
   const classes = useStyles()
   const { user, setUser } = useGlobal()
-  const links = type === 'main' ? mainLinks : type === 'dashboard' ? dashboardLinks : []
   const history = useHistory()
 
+  const links = [
+    {
+      path: '/',
+      title: 'Home',
+      condition: true
+    },
+    {
+      path: '/login',
+      title: 'Login',
+      condition: !user?.id
+    },
+    {
+      path: '/sign-up',
+      title: 'Signup',
+      condition: !user?.id
+    },
+
+    {
+      path: '/dashboard',
+      title: 'Enter/Exit',
+      condition: !!user?.id
+    },
+    {
+      path: '/dashboard/report',
+      title: 'Reports',
+      condition: !!user?.id
+    },
+  ]
   const handleLogout = () => {
     logout(window?.localStorage, user?.id)
     setUser({ id: 0, name: '', phone: '', enterExits: [] })
@@ -26,15 +53,10 @@ function NavBar({ type }) {
         <ul className={classes.navList}>
 
           {
-            links?.map(link => (
-              <Button variant="outlined" key={link.title}>
-                <NavLink exact to={link.path}>
-                  {link.title}
-                </NavLink>
-              </Button>
+            links?.map(link => link.condition && (
+              <BtnLink key={link.title} link={link} />
             ))
           }
-
 
           {
             (type === "dashboard" && user?.id) && (

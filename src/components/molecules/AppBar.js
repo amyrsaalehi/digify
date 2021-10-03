@@ -4,11 +4,9 @@ import FolderIcon from '@mui/icons-material/Folder';
 import RestoreIcon from '@mui/icons-material/Restore';
 import { useState } from 'react';
 import { Paper } from '@mui/material';
-import { mainLinks, dashboardLinks } from '../../Routes'
 
-function AppBar({ type }) {
+function AppBar() {
   const [value, setValue] = useState('recents');
-  const links = type === 'main' ? mainLinks : type === 'dashboard' ? dashboardLinks : []
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

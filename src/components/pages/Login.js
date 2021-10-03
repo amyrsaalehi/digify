@@ -32,7 +32,7 @@ function Login() {
     if (user) {
       console.log('This user logged in successfuly!');
       setUser(user);
-      history.push('/dashboard/enter-exit')
+      history.push('/dashboard')
     } else {
       console.log('User not found! please Register!');
       history.push('/sign-up')
