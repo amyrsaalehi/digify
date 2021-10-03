@@ -1,12 +1,30 @@
+import { useMediaQuery, useTheme } from '@mui/material';
 import { Container } from '@mui/material'
-import React from 'react'
+import NavBar from '../molecules/NavBar'
+import AppBar from '../molecules/AppBar'
+
 
 function MainLayout({ children }) {
+  const theme = useTheme()
+  const isMobileOrTablet = useMediaQuery(theme.breakpoints.down('md'))
+
   return (
-    <Container>
-      main
-      {children}
-    </Container>
+    <div>
+      {
+        !isMobileOrTablet && (
+          <NavBar type="main" />
+        )
+      }
+      <Container>
+        {children}
+      </Container>
+
+      {
+        isMobileOrTablet && (
+          <AppBar type="main" />
+        )
+      }
+    </div>
   )
 }
 

@@ -1,12 +1,30 @@
+import { useMediaQuery, useTheme } from '@mui/material';
 import { Container } from '@mui/material'
-import React from 'react'
+import NavBar from '../molecules/NavBar'
+import AppBar from '../molecules/AppBar'
+
 
 function DashboardLayout({ children }) {
+  const theme = useTheme()
+  const isMobileOrTablet = useMediaQuery(theme.breakpoints.down('md'))
+
+
   return (
-    <Container>
-      dashboard
-      {children}
-    </Container>
+    <div>
+      {
+        !isMobileOrTablet && (
+          <NavBar type="dashboard" />
+        )
+      }
+      <Container>
+        {children}
+      </Container>
+      {
+        isMobileOrTablet && (
+          <AppBar type="dashboard" />
+        )
+      }
+    </div>
   )
 }
 

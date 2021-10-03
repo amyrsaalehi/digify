@@ -1,11 +1,11 @@
-import DashboardLayout from '../template/DashboardLayout'
+import MainLayout from '../template/MainLayout'
 
 
 function Login() {
   return (
-    <DashboardLayout>
+    <MainLayout>
       login
-    </DashboardLayout>
+    </MainLayout>
   )
 }
 
