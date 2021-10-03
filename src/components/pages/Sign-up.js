@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles'
 import { useState } from 'react'
 import { USERS } from '../../constants/storage'
 import { useHistory } from 'react-router'
-import { getUser } from '../../utils/getUser'
+import { getUser } from '../../utils/storage'
 
 function SignUp() {
   const [form, setFrom] = useState({ name: '', phone: '' })

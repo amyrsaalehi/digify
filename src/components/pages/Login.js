@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles'
 import { useState } from 'react'
 import { useHistory } from 'react-router'
 import { useGlobal } from '../../contexts/Global'
-import { getUser } from '../../utils/getUser'
+import { getUser } from '../../utils/storage'
 
 function Login() {
   const [form, setFrom] = useState({ name: '', phone: '' })

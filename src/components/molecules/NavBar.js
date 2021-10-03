@@ -1,13 +1,23 @@
-import { Container } from '@mui/material';
+import { Button, Container } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { mainLinks, dashboardLinks } from '../../Routes'
+import { useGlobal } from '../../contexts/Global'
+import { logout } from '../../utils/storage'
 
 
 function NavBar({ type }) {
   const classes = useStyles()
+  const { user, setUser } = useGlobal()
   const links = type === 'main' ? mainLinks : type === 'dashboard' ? dashboardLinks : []
+  const history = useHistory()
+
+  const handleLogout = () => {
+    logout(window?.localStorage, user?.id)
+    setUser({ id: 0, name: '', phone: '', enterExits: [] })
+    history.push('/')
+  }
 
 
   return (
@@ -17,12 +27,23 @@ function NavBar({ type }) {
 
           {
             links?.map(link => (
-              <li key={link.title}>
+              <Button variant="outlined" key={link.title}>
                 <NavLink exact to={link.path}>
                   {link.title}
                 </NavLink>
-              </li>
+              </Button>
             ))
+          }
+
+
+          {
+            (type === "dashboard" && user?.id) && (
+              <li>
+                <Button variant="outlined" color="error" onClick={handleLogout} >
+                  Logout
+                </Button>
+              </li>
+            )
           }
         </ul>
       </Container>
@@ -38,28 +59,27 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     borderBottom: '1px solid #ccc',
     boxShadow: '1px 1px 5px 1px #ccc',
-    marginBottom: 10
+    marginBottom: 10,
+
+
+    '&  button': {
+      padding: '10px 15px',
+    },
+    '& li:first-child': {
+      paddingLeft: 0
+    },
+    '& a': {
+      color: '#008dff'
+    },
+    '& .active': {
+      color: '#0dd1ff',
+    }
   },
   navList: {
     display: 'flex',
     justifyContent: 'center',
     gap: 20,
     alignItems: 'center',
-
-    '& > li': {
-      padding: '15px 10px',
-    },
-    '& > li:first-child': {
-      paddingLeft: 0
-    },
-    '& a': {
-      color: '#0dd1ff'
-    },
-    '& .active': {
-      color: '#008dff',
-      textDecoration: '1px underline #008dff',
-      fontWeight: 'bold'
-    }
   }
 }))
 
