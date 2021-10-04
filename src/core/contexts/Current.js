@@ -9,6 +9,7 @@ export const CurrentProvider = ({ children }) => {
     id: 0,
     start: 0,
     end: 0,
+    remote: false,
     tasks: []
   });
 
@@ -45,6 +46,7 @@ export const CurrentProvider = ({ children }) => {
         id: 0,
         start: 0,
         end: 0,
+        remote: false,
         tasks: []
       })
     }

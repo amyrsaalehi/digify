@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, Stepper, StepLabel, StepContent, Button, Typography, Paper, Step } from '@mui/material'
-import Enter from '../atoms/VerticalStepperSteps/Enter';
-import Exit from '../atoms/VerticalStepperSteps/Exit';
+import Enter from '../molecules/VerticalStepperSteps/Enter';
+import Exit from '../molecules/VerticalStepperSteps/Exit';
 import { useCurrent } from '../../core/contexts/Current';
 import Countdown, { zeroPad } from 'react-countdown';
 
@@ -38,6 +38,7 @@ export default function VerticalStepper({ initialStep = 0 }) {
       id: 0,
       start: 0,
       end: 0,
+      remote: false,
       tasks: []
     })
   }

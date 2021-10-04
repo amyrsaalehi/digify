@@ -22,12 +22,13 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 dayjs.extend(RelativeTime)
 
-function createData(id, start, end, tasks) {
+function createData(id, start, end, tasks, remote) {
   return {
     id,
     start,
     end,
-    tasks
+    tasks,
+    remote
   };
 }
 
@@ -71,6 +72,7 @@ function Row({ row }) {
         </StyledTableCell>
         <StyledTableCell align="center">{dayjs(row.start).fromNow(true)} ago</StyledTableCell>
         <StyledTableCell align="center">{dayjs(row.end).fromNow(true)} ago</StyledTableCell>
+        <StyledTableCell align="center">{row.remote ? 'Remote' : 'In-Person'}</StyledTableCell>
       </StyledTableRow>
       <StyledTableRow>
         <StyledTableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -115,16 +117,22 @@ export default function CollapsibleTable({ search, shouldSearch, setShouldSearch
 
 
   React.useEffect(() => {
-    if (search === '') {
+    if (search.text === '') {
+      console.log(user.enterExits
+        .filter(({ remote }) => remote === search.remote)
+      )
       setRows(
-        user.enterExits.map(item => createData(item.id, item.start, item.end, item.tasks))
+        user.enterExits
+          .filter(({ remote }) => search.remote ? remote === search.remote : true)
+          .map(item => createData(item.id, item.start, item.end, item.tasks, item.remote))
       )
     } else {
       if (shouldSearch) {
         setRows(
           user.enterExits
-            .filter(({ tasks }) => tasks.filter(({ title }) => title.search(search.toLowerCase()) !== -1).length > 0)
-            .map(item => createData(item.id, item.start, item.end, item.tasks))
+            .filter(({ remote }) => search.remote ? remote === search.remote : true)
+            .filter(({ tasks }) => tasks.filter(({ title }) => title.search(search.text.toLowerCase()) !== -1).length > 0)
+            .map(item => createData(item.id, item.start, item.end, item.tasks, item.remote))
         )
       }
       setShouldSearch(false)
@@ -142,6 +150,7 @@ export default function CollapsibleTable({ search, shouldSearch, setShouldSearch
             <StyledTableCell>#</StyledTableCell>
             <StyledTableCell align="center">Start</StyledTableCell>
             <StyledTableCell align="center">End</StyledTableCell>
+            <StyledTableCell align="center">Approach</StyledTableCell>
           </StyledTableRow>
         </TableHead>
         <TableBody>

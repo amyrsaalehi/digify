@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles'
 import { Paper } from '@mui/material'
-import VerticalStepper from '../../molecules/VerticalStepper'
+import VerticalStepper from '../../organisms/VerticalStepper'
 import DashboardLayout from '../../template/DashboardLayout'
 import { useCurrent } from '../../../core/contexts/Current'
 

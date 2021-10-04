@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import DashboardLayout from '../../template/DashboardLayout'
-import { useGlobal } from '../../../core/contexts/Global'
 import CollapsibleTable from '../../molecules/CollapsibleTable'
 import SearchBar from '../../atoms/SearchBar'
 
 function Report() {
-  const { user } = useGlobal()
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState({ text: '', remote: false })
   const [shouldSearch, setShouldSearch] = useState(false)
 
   return (
