@@ -32,7 +32,7 @@ export const CurrentProvider = ({ children }) => {
 
   React.useEffect(() => {
     console.log(current)
-    if (!!current.id && !!current.start && !!current.end) {
+    if (!!current.id && !!current.start && !!current.end && current.tasks.length > 0) {
       setUser(prev => ({
         ...prev,
         enterExits: [

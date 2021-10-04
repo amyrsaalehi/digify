@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, Stepper, StepLabel, StepContent, Button, Typography, Paper, Step } from '@mui/material'
 import Enter from '../atoms/VerticalStepperSteps/Enter';
 import Exit from '../atoms/VerticalStepperSteps/Exit';
-import { useCurrent } from '../../contexts/Current';
+import { useCurrent } from '../../core/contexts/Current';
 import Countdown, { zeroPad } from 'react-countdown';
 
 const steps = [
@@ -34,6 +34,12 @@ export default function VerticalStepper() {
 
   const handleReset = () => {
     setActiveStep(0)
+    setCurrent({
+      id: 0,
+      start: 0,
+      end: 0,
+      tasks: []
+    })
   }
 
   const renderer = ({ minutes, seconds, completed }) => {

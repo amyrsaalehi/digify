@@ -2,8 +2,8 @@ import { Button, Container } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react'
 import { useHistory } from 'react-router-dom';
-import { useGlobal } from '../../contexts/Global'
-import { logout } from '../../utils/storage'
+import { useGlobal } from '../../core/contexts/Global'
+import { logout } from '../../core/utils/storage'
 import BtnLink from '../atoms/BtnLink';
 
 

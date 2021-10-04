@@ -2,7 +2,7 @@ import { useMediaQuery, useTheme } from '@mui/material';
 import { Container } from '@mui/material'
 import NavBar from '../molecules/NavBar'
 import AppBar from '../molecules/AppBar'
-import { CurrentProvider } from '../../contexts/Current'
+import { CurrentProvider } from '../../core/contexts/Current'
 
 
 function DashboardLayout({ children }) {

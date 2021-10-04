@@ -2,9 +2,9 @@ import MainLayout from '../template/MainLayout'
 import { TextField, Paper, Button } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { useState } from 'react'
-import { USERS } from '../../constants/storage'
+import { USERS } from '../../core/constants/storage'
 import { useHistory } from 'react-router'
-import { getUser } from '../../utils/storage'
+import { getUser } from '../../core/utils/storage'
 
 function SignUp() {
   const [form, setFrom] = useState({ name: '', phone: '' })

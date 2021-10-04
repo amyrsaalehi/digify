@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { useCurrent } from '../../../contexts/Current'
-import { useGlobal } from '../../../contexts/Global'
+import { useCurrent } from '../../../core/contexts/Current'
+import { useGlobal } from '../../../core/contexts/Global'
 
 function Enter({ shouldSave }) {
   const { setCurrent } = useCurrent()

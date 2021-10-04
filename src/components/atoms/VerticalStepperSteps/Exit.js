@@ -1,11 +1,11 @@
 import { makeStyles } from '@mui/styles'
 import { TextField } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { useCurrent } from '../../../contexts/Current'
+import { useCurrent } from '../../../core/contexts/Current'
 
 function Exit({ shouldSave }) {
   const classes = useStyles()
-  const { setCurrent } = useCurrent()
+  const { current, setCurrent } = useCurrent()
   const [tasks, setTasks] = useState('')
 
   const handleTasksChanged = (e) => {
@@ -13,7 +13,7 @@ function Exit({ shouldSave }) {
   }
 
   useEffect(() => {
-    if (shouldSave && tasks !== '') {
+    if (shouldSave && tasks !== '' && current.tasks.length === 0) {
       const tasksArray = tasks
         .split(',')
         .map(t => t.trim())
@@ -25,11 +25,12 @@ function Exit({ shouldSave }) {
         tasks: tasksArray
       }))
     }
-  }, [shouldSave, tasks])
+  }, [shouldSave])
 
   return (
     <div>
       <TextField
+        required
         className={classes.input}
         type="text"
         label="Tasks"
