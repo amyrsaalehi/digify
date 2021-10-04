@@ -84,7 +84,7 @@ export default function VerticalStepper({ initialStep = 0 }) {
                     (
                       <Countdown
                         renderer={renderer}
-                        date={Date.now() + 2 * 1000} // It should be current.start + 10*60*1000 but, It's module's problem so... :]]]
+                        date={Date.now() + 10 * 60 * 1000} // It should be current.start + 10*60*1000 but, It's module's problem so... :]]]
                       />
                     ) :
                     (
