@@ -2,16 +2,17 @@ import { makeStyles } from '@mui/styles'
 import { Paper } from '@mui/material'
 import VerticalStepper from '../../molecules/VerticalStepper'
 import DashboardLayout from '../../template/DashboardLayout'
+import { useCurrent } from '../../../core/contexts/Current'
 
 
 function EnterExit() {
   const classes = useStyles()
-
+  const { current } = useCurrent()
 
   return (
     <DashboardLayout>
       <Paper className={classes.wrapper}>
-        <VerticalStepper />
+        <VerticalStepper initialStep={current.start > 0 ? 1 : 0} />
       </Paper>
     </DashboardLayout>
   )

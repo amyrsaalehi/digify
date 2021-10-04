@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { USERS } from '../../core/constants/storage'
 import { useHistory } from 'react-router'
 import { getUser } from '../../core/utils/storage'
+import { testString } from '../../core/constants/regex'
 
 function SignUp() {
   const [form, setFrom] = useState({ name: '', phone: '' })
@@ -12,15 +13,30 @@ function SignUp() {
   const history = useHistory()
 
   const handleFormChanged = (e) => {
+    let tempForm = { name: '', phone: '' }
+
+    if (e.target.name === 'name') {
+      tempForm.name = e.target.value.replace(/\s\s/g, ' ').replace(/\d/g, '');
+    }
+
+    if (e.target.name === 'phone') {
+      tempForm.phone = e.target.value.replace(/\s/g, '')
+      if (tempForm.phone < 0) {
+        tempForm.phone = 0
+      }
+    }
+
     setFrom(prev => ({
       ...prev,
-      [e.target.name]: e.target.name === 'name' ?
-        e.target.value.replace(/\s\s/g, ' ').replace(/\d/g, '') :
-        e.target.value.replace(/\s/g, '')
+      [e.target.name]: tempForm[e.target.name]
     }))
   }
 
   const handleFormSubmited = () => {
+    if (!testString(form.phone, 'PHONE')) {
+      console.log('Phone number is not valid!')
+      return;
+    }
     setFrom(prev => ({
       ...prev,
       name: prev.name.trim()

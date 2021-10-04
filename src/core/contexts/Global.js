@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { changeUser } from '../utils/storage'
 
 const GlobalContext = React.createContext(null);
 
@@ -32,6 +33,7 @@ export const GlobalProvider = ({ children }) => {
 
   React.useEffect(() => {
     console.log(user)
+    changeUser(window?.localStorage, user)
   }, [user])
 
 

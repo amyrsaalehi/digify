@@ -3,13 +3,15 @@ import { makeStyles } from '@mui/styles';
 import React from 'react'
 import { useHistory } from 'react-router-dom';
 import { useGlobal } from '../../core/contexts/Global'
+import { useCurrent } from '../../core/contexts/Current'
 import { logout } from '../../core/utils/storage'
 import BtnLink from '../atoms/BtnLink';
 
 
-function NavBar({ type }) {
+function NavBar() {
   const classes = useStyles()
   const { user, setUser } = useGlobal()
+  const { setCurrent } = useCurrent()
   const history = useHistory()
 
   const links = [
@@ -42,7 +44,18 @@ function NavBar({ type }) {
   ]
   const handleLogout = () => {
     logout(window?.localStorage, user?.id)
-    setUser({ id: 0, name: '', phone: '', enterExits: [] })
+    setUser({
+      id: 0,
+      name: '',
+      phone: '',
+      enterExits: []
+    })
+    setCurrent({
+      id: 0,
+      start: 0,
+      end: 0,
+      tasks: []
+    })
     history.push('/')
   }
 
@@ -69,7 +82,6 @@ function NavBar({ type }) {
           }
         </ul>
       </Container>
-      <hr />
     </nav>
   )
 }
@@ -77,11 +89,12 @@ function NavBar({ type }) {
 const useStyles = makeStyles(theme => ({
   nav: {
     display: 'flex',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
     borderBottom: '1px solid #ccc',
     boxShadow: '1px 1px 5px 1px #ccc',
-    marginBottom: 10,
+
 
 
     '&  button': {

@@ -2,9 +2,8 @@ import { useMediaQuery, useTheme } from '@mui/material';
 import { Container } from '@mui/material'
 import NavBar from '../molecules/NavBar'
 import AppBar from '../molecules/AppBar'
-import { CurrentProvider } from '../../core/contexts/Current'
 
-
+// DashboardLayout is just like MainLayout DashboardLayout, But we separate them cuz to be easy to modify later :]
 function DashboardLayout({ children }) {
   const theme = useTheme()
   const isMobileOrTablet = useMediaQuery(theme.breakpoints.down('md'))
@@ -14,14 +13,12 @@ function DashboardLayout({ children }) {
     <div>
       {
         !isMobileOrTablet && (
-          <NavBar type="dashboard" />
+          <NavBar />
         )
       }
-      <CurrentProvider>
-        <Container style={{ paddingTop: 30 }}>
-          {children}
-        </Container>
-      </CurrentProvider>
+      <Container style={{ paddingTop: 30 }}>
+        {children}
+      </Container>
       {
         isMobileOrTablet && (
           <AppBar type="dashboard" />

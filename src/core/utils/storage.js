@@ -39,3 +39,19 @@ export const logout = (storage, userId) => {
   storage.setItem(USERS, JSON.stringify(users))
   console.log('userLoggedOut')
 }
+
+export const changeUser = (storage, user) => {
+  if (!storage) {
+    console.log('Localstorage not found!')
+    return;
+  }
+  if (!storage.getItem(USERS)) {
+    storage.setItem(USERS, JSON.stringify([]))
+  }
+  let users = JSON.parse(storage.getItem(USERS))
+  const userIndex = users.findIndex(u => u.id === user.id)
+
+  users[userIndex] = user;
+
+  localStorage.setItem(USERS, JSON.stringify(users))
+}

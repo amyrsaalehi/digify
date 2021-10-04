@@ -3,6 +3,7 @@ import { Container } from '@mui/material'
 import NavBar from '../molecules/NavBar'
 import AppBar from '../molecules/AppBar'
 
+// MainLayout is just like DashboardLayout, But we separate them cuz to be easy to modify later :]
 
 function MainLayout({ children }) {
   const theme = useTheme()
@@ -12,7 +13,7 @@ function MainLayout({ children }) {
     <div>
       {
         !isMobileOrTablet && (
-          <NavBar type="main" />
+          <NavBar />
         )
       }
       <Container style={{ paddingTop: 30 }}>

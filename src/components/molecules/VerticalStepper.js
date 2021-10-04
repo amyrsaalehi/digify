@@ -16,8 +16,8 @@ const steps = [
   },
 ];
 
-export default function VerticalStepper() {
-  const [activeStep, setActiveStep] = React.useState(0);
+export default function VerticalStepper({ initialStep = 0 }) {
+  const [activeStep, setActiveStep] = React.useState(initialStep);
   const { setCurrent } = useCurrent()
 
   const handleNext = () => {
