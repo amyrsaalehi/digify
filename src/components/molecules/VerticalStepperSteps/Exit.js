@@ -45,10 +45,10 @@ function Exit({ shouldSave }) {
   )
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   input: {
     width: '80%'
   }
-}))
+})
 
 export default Exit

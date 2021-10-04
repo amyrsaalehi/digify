@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles'
 import { useState } from 'react'
 import { USERS } from '../../core/constants/storage'
 import { useHistory } from 'react-router'
-import { getUser } from '../../core/utils/storage'
+import { signUp } from '../../core/utils/storage'
 import { testString } from '../../core/constants/regex'
 
 function SignUp() {
@@ -34,7 +34,7 @@ function SignUp() {
 
   const handleFormSubmited = () => {
     if (!testString(form.phone, 'PHONE')) {
-      console.log('Phone number is not valid!')
+      alert('Phone number is not valid!')
       return;
     }
     setFrom(prev => ({
@@ -42,14 +42,13 @@ function SignUp() {
       name: prev.name.trim()
     }))
 
-    const { user, users } = getUser(window?.localStorage, form)
+    const { user } = signUp(window?.localStorage, form)
 
     if (user) {
-      console.log('This user exists! Please Login');
+      alert('It seems this user exists! Please Login!');
       history.push('login')
     } else {
-      window.localStorage.setItem(USERS, JSON.stringify([...users, { id: users.length + 1, enterExits: [], ...form }]))
-      console.log('This user has been succefully registered! Please Login!');
+      alert('This user has been succefully registered! Please Login!');
       history.push('login')
     }
   }
@@ -67,7 +66,7 @@ function SignUp() {
   )
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
@@ -86,6 +85,6 @@ const useStyles = makeStyles(theme => ({
   input: {
     width: 250
   }
-}))
+})
 
 export default SignUp

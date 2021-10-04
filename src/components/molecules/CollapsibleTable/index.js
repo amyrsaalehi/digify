@@ -118,9 +118,6 @@ export default function CollapsibleTable({ search, shouldSearch, setShouldSearch
 
   React.useEffect(() => {
     if (search.text === '') {
-      console.log(user.enterExits
-        .filter(({ remote }) => remote === search.remote)
-      )
       setRows(
         user.enterExits
           .filter(({ remote }) => search.remote ? remote === search.remote : true)

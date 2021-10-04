@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles'
 import { useState } from 'react'
 import { useHistory } from 'react-router'
 import { useGlobal } from '../../core/contexts/Global'
-import { getUser } from '../../core/utils/storage'
+import { login } from '../../core/utils/storage'
 import { testString } from '../../core/constants/regex'
 
 function Login() {
@@ -35,7 +35,7 @@ function Login() {
 
   const handleFormSubmited = () => {
     if (!testString(form.phone, 'PHONE')) {
-      console.log('Phone number is not valid!')
+      alert('Phone number is not valid!')
       return;
     }
 
@@ -44,14 +44,14 @@ function Login() {
       name: prev.name.trim()
     }))
 
-    const { user } = getUser(window?.localStorage, form)
+    const { user } = login(window?.localStorage, form)
 
     if (user) {
-      console.log('This user logged in successfuly!');
+      alert('This user logged in successfuly!');
       setUser(user);
       history.push('/dashboard')
     } else {
-      console.log('User not found! please Register!');
+      alert('User not found! please Register!');
       history.push('/sign-up')
     }
   }
@@ -69,7 +69,7 @@ function Login() {
   )
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
@@ -88,6 +88,6 @@ const useStyles = makeStyles(theme => ({
   input: {
     width: 250
   }
-}))
+})
 
 export default Login

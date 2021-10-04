@@ -67,7 +67,7 @@ function NavBar() {
 
           {
             links?.map(link => link.condition && (
-              <BtnLink key={link.title} link={link} />
+              <BtnLink key={link.path} link={link} />
             ))
           }
 
@@ -86,15 +86,14 @@ function NavBar() {
   )
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   nav: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottom: '1px solid #ccc',
     boxShadow: '1px 1px 5px 1px #ccc',
-
+    backgroundColor: 'rgba(255, 255, 255, .7)',
 
 
     '&  button': {
@@ -116,6 +115,6 @@ const useStyles = makeStyles(theme => ({
     gap: 20,
     alignItems: 'center',
   }
-}))
+})
 
 export default NavBar

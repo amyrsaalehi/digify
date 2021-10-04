@@ -8,9 +8,49 @@ export const getUser = (storage, form) => {
   if (!storage.getItem(USERS)) {
     storage.setItem(USERS, JSON.stringify([]))
   }
+
   const users = JSON.parse(storage.getItem(USERS))
-  const user = users.find(user => user.name === form.name)
-  return { users, user }
+  const user = users.find(user => user.name === form.name && user.phone == form.phone)
+
+  console.log('user', user)
+
+  return { user }
+}
+
+export const signUp = (storage, form) => {
+  if (!storage) {
+    console.log('Localstorage not found!')
+    return null;
+  }
+
+  if (!storage.getItem(USERS)) {
+    storage.setItem(USERS, JSON.stringify([]))
+  }
+
+  const users = JSON.parse(storage.getItem(USERS))
+  const user = users.find(user => user.name === form.name || user.phone == form.phone)
+
+  if (!user) {
+    window.localStorage.setItem(USERS, JSON.stringify([...users, { id: users.length + 1, enterExits: [], ...form }]))
+  }
+
+  return { user }
+}
+
+export const login = (storage, form) => {
+  if (!storage) {
+    console.log('Localstorage not found!')
+    return null;
+  }
+
+  if (!storage.getItem(USERS)) {
+    storage.setItem(USERS, JSON.stringify([]))
+  }
+
+  const users = JSON.parse(storage.getItem(USERS))
+  const user = users.find(user => user.name === form.name && user.phone == form.phone)
+
+  return { user }
 }
 
 export const logout = (storage, userId) => {

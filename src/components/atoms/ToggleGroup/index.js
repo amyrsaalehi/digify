@@ -4,6 +4,8 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 export default function ToggleGroup({ isRemote, setIsRemote, options = ['remote', 'in-person'] }) {
 
+  // Options should be an ENUM :]]]...I knowwwww dude
+
   const handleToggled = (event, newValue) => {
     switch (newValue) {
       case options[0]:
