@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Paper } from '@mui/material';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
@@ -8,18 +11,13 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import HomeIcon from '@mui/icons-material/Home';
 
-import { useState } from 'react';
-import { Paper } from '@mui/material';
-import { useHistory } from 'react-router-dom';
-
-
-
 import { useGlobal } from '../../../core/contexts/Global'
 import { useCurrent } from '../../../core/contexts/Current'
 import { logout } from '../../../core/utils/storage'
 
+
 function AppBar() {
-  const [value, setValue] = useState('recents');
+  const [value, setValue] = useState('login');
   const { user, setUser } = useGlobal()
   const { setCurrent } = useCurrent()
   const history = useHistory()
@@ -27,32 +25,32 @@ function AppBar() {
   const links = [
     {
       path: '/',
-      title: 'Home',
+      title: 'HOME',
       condition: true,
       icon: () => <HomeIcon />
     },
     {
       path: '/login',
-      title: 'Login',
+      title: 'LOGIN',
       condition: !user?.id,
       icon: () => <LoginIcon />
     },
     {
       path: '/sign-up',
-      title: 'Signup',
+      title: 'SIGNUP',
       condition: !user?.id,
       icon: () => <ExitToAppIcon />
     },
 
     {
       path: '/dashboard',
-      title: 'Enter/Exit',
+      title: 'TASKS',
       condition: !!user?.id,
       icon: () => <BallotIcon />
     },
     {
       path: '/dashboard/report',
-      title: 'Reports',
+      title: 'REPORTS',
       condition: !!user?.id,
       icon: () => <AnalyticsIcon />
     },
@@ -75,16 +73,17 @@ function AppBar() {
     history.push('/')
   }
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (_, newValue) => {
     setValue(newValue);
-    if (newValue !== 'Logout') { // I know again that values should be ENUMMMM :]]]]]]
-      history.push(links.find(link => link.title === newValue).path)
+    if (value !== 'LOGOUT') { // I know again that values should be ENUMMMM :]]]]]]
+      history.push(links.find(link => link.title === newValue.toUpperCase())?.path)
     }
   };
+
+
   return (
     <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, display: 'flex', justifyContent: 'center' }} elevation={3}>
       <BottomNavigation sx={{ width: 500 }} value={value} onChange={handleChange}>
-
         {
           links?.map(link => link.condition && (
             <BottomNavigationAction
@@ -97,7 +96,7 @@ function AppBar() {
         }
         {
           user?.id ? (
-            <BottomNavigationAction onClick={handleLogout} label="Logout" value="Logout" icon={<LogoutIcon />} />
+            <BottomNavigationAction onClick={handleLogout} label="LOGOUT" value="LOGOUT" icon={<LogoutIcon />} />
           ) : null
         }
       </BottomNavigation>
