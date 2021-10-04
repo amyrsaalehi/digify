@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles'
-import { Paper } from '@mui/material'
+import { Paper, Typography } from '@mui/material'
 import VerticalStepper from '../../organisms/VerticalStepper'
 import DashboardLayout from '../../template/DashboardLayout'
 import { useCurrent } from '../../../core/contexts/Current'
@@ -14,7 +14,11 @@ function EnterExit() {
     <DashboardLayout>
       <Paper className={classes.wrapper}>
         {
-          isHoliday() ? null : <VerticalStepper initialStep={current.start > 0 ? 1 : 0} />
+          isHoliday() ? (
+            <Typography variant="h5" align="center" sx={{ width: '100%', py: 8 }}>This is holiday... Go and have fun...</Typography>
+          ) : (
+            <VerticalStepper initialStep={current.start > 0 ? 1 : 0} />
+          )
         }
       </Paper>
     </DashboardLayout>

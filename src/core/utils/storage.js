@@ -77,7 +77,7 @@ export const logout = (storage, userId) => {
   */
 
   storage.setItem(USERS, JSON.stringify(users))
-  console.log('userLoggedOut')
+  alert('User has been successfuly Logged Out!')
 }
 
 export const changeUser = (storage, user) => {
