@@ -32,7 +32,7 @@ export const GlobalProvider = ({ children }) => {
   */
 
   React.useEffect(() => {
-    console.log(user)
+    console.log('global', user)
     changeUser(window?.localStorage, user)
   }, [user])
 

@@ -31,7 +31,7 @@ export const CurrentProvider = ({ children }) => {
   */
 
   React.useEffect(() => {
-    console.log(current)
+    console.log('current', current)
     if (!!current.id && !!current.start && !!current.end && current.tasks.length > 0) {
       setUser(prev => ({
         ...prev,
@@ -40,6 +40,13 @@ export const CurrentProvider = ({ children }) => {
           current
         ]
       }))
+
+      setCurrent({
+        id: 0,
+        start: 0,
+        end: 0,
+        tasks: []
+      })
     }
   }, [current])
 

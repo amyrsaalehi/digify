@@ -109,14 +109,29 @@ function Row({ row }) {
   );
 }
 
-export default function CollapsibleTable() {
+export default function CollapsibleTable({ search, shouldSearch, setShouldSearch }) {
   const { user } = useGlobal()
   const [rows, setRows] = React.useState([]);
 
 
   React.useEffect(() => {
-    setRows(user.enterExits.map(item => createData(item.id, item.start, item.end, item.tasks)))
-  }, [user])
+    if (search === '') {
+      setRows(
+        user.enterExits.map(item => createData(item.id, item.start, item.end, item.tasks))
+      )
+    } else {
+      if (shouldSearch) {
+        setRows(
+          user.enterExits
+            .filter(({ tasks }) => tasks.filter(({ title }) => title.search(search.toLowerCase()) !== -1).length > 0)
+            .map(item => createData(item.id, item.start, item.end, item.tasks))
+        )
+      }
+      setShouldSearch(false)
+    }
+  }, [user, search, shouldSearch])
+
+
 
   return (
     <TableContainer component={Paper}>

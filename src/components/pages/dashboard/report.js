@@ -1,26 +1,21 @@
-import { makeStyles } from '@mui/styles'
+import { useState } from 'react'
 import DashboardLayout from '../../template/DashboardLayout'
 import { useGlobal } from '../../../core/contexts/Global'
 import CollapsibleTable from '../../molecules/CollapsibleTable'
+import SearchBar from '../../atoms/SearchBar'
 
 function Report() {
-  const classes = useStyles()
   const { user } = useGlobal()
+  const [search, setSearch] = useState('')
+  const [shouldSearch, setShouldSearch] = useState(false)
 
-  console.log(user)
   return (
     <DashboardLayout>
-      <CollapsibleTable />
+      <SearchBar search={search} setSearch={setSearch} setShouldSearch={setShouldSearch} />
+      <CollapsibleTable search={search} shouldSearch={shouldSearch} setShouldSearch={setShouldSearch} />
     </DashboardLayout>
   )
 }
 
-const useStyles = makeStyles(theme => ({
-  wrapper: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '20px 0 20px 20px',
-  }
-}))
 
 export default Report
