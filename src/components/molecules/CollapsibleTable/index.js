@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useGlobal } from '../../core/contexts/Global'
+import { useGlobal } from '../../../core/contexts/Global'
 import { styled } from '@mui/material/styles';
 import dayjs from 'dayjs'
 import RelativeTime from 'dayjs/plugin/relativeTime'

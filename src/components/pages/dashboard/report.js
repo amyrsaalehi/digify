@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import DashboardLayout from '../../template/DashboardLayout'
 import CollapsibleTable from '../../molecules/CollapsibleTable'
-import SearchBar from '../../atoms/SearchBar'
+import SearchBar from '../../molecules/SearchBar'
 
 function Report() {
   const [search, setSearch] = useState({ text: '', remote: false })

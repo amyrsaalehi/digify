@@ -2,10 +2,10 @@ import { Button, Container } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react'
 import { useHistory } from 'react-router-dom';
-import { useGlobal } from '../../core/contexts/Global'
-import { useCurrent } from '../../core/contexts/Current'
-import { logout } from '../../core/utils/storage'
-import BtnLink from '../atoms/BtnLink';
+import { useGlobal } from '../../../core/contexts/Global'
+import { useCurrent } from '../../../core/contexts/Current'
+import { logout } from '../../../core/utils/storage'
+import BtnLink from '../../atoms/BtnLink';
 
 
 function NavBar() {

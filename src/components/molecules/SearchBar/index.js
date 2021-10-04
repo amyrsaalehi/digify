@@ -1,5 +1,5 @@
 import { Grid, TextField, Button } from '@mui/material'
-import ToggleGroup from './ToggleGroup'
+import ToggleGroup from '../../atoms/ToggleGroup'
 
 function SearchBar({ search, setSearch, setShouldSearch }) {
 
